@@ -145,7 +145,6 @@ export default {
     fruitsValues: [],
   }),
   created() {
-    //this.getSmoothies();
     this.getLiquids();
     this.getProteins();
     this.getFruits();
@@ -180,19 +179,6 @@ export default {
       if (!val) return;
       this.selectedFruits.push(val);
       this.fruitsModel = "";
-    },
-    getSmoothies() {
-      axios
-        .get("https://smoothie-api1.herokuapp.com/smoothies/")
-        .then((resp) => {
-          if (resp.status === 200) {
-            //this.listas = resp.data;
-            this.smoothies = resp.data;
-          }
-        })
-        .catch((e) => {
-          console.error(e);
-        });
     },
     getLiquids() {
       axios
@@ -233,31 +219,6 @@ export default {
           console.error(e);
         });
     },
-    checkForm: function(e) {
-      if (
-        this.proteinsModel &&
-        this.liquidModel &&
-        this.selectedFruits &&
-        this.tasteModel &&
-        this.proteinModel
-      ) {
-        return true;
-      }
-
-      this.errors = [];
-
-      !this.smoothieNameModel && this.errors.push("Please fill Smoothie name");
-      !this.fruitsModel &&
-        this.errors.push("Please select at least 1 fruit for you smoothie");
-      !this.liquidNameModel &&
-        this.errors.push("Please select 1 Liquid for you smoothie");
-      !this.proteinModel &&
-        this.errors.push("Please select 1 Protein for you smoothie");
-      !this.tasteModel &&
-        this.errors.push("Put how much Taste have your smoothie.!");
-
-      e.preventDefault();
-    },
     saveSmoothie(e) {
       e.preventDefault();
 
@@ -283,8 +244,6 @@ export default {
             });
         }
       });
-      //e.preventDefault();
-
     },
     Remove(e) {
       if (!Number.isInteger(e)) return;
