@@ -182,7 +182,7 @@ export default {
     },
     getLiquids() {
       axios
-        .get("https://smoothie-api1.herokuapp.com/liquids/")
+        .get("https://smoothies-api.herokuapp.com/liquids/")
         .then((resp) => {
           if (resp.status === 200) {
             //this.listas = resp.data;
@@ -195,7 +195,7 @@ export default {
     },
     getProteins() {
       axios
-        .get("https://smoothie-api1.herokuapp.com/proteins/")
+        .get("https://smoothies-api.herokuapp.com/proteins/")
         .then((resp) => {
           if (resp.status === 200) {
             //this.listas = resp.data;
@@ -208,7 +208,7 @@ export default {
     },
     getFruits() {
       axios
-        .get("https://smoothie-api1.herokuapp.com/fruits/")
+        .get("https://smoothies-api.herokuapp.com/fruits/")
         .then((resp) => {
           if (resp.status === 200) {
             //this.listas = resp.data;
@@ -236,7 +236,7 @@ export default {
 
           console.info(newSmoothie);
           axios
-            .post("https://smoothie-api1.herokuapp.com/smoothies/", newSmoothie)
+            .post("https://smoothies-api.herokuapp.com/smoothies/", newSmoothie)
             .then((result) => {
               alert("¡Batido creado!");
               router.push({ path: "/" });

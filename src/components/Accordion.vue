@@ -79,7 +79,7 @@ export default {
   methods: {
     getSmoothies() {
       axios
-        .get("https://smoothie-api1.herokuapp.com/smoothies/")
+        .get("https://smoothies-api.herokuapp.com/smoothies/")
         .then((resp) => {
           if (resp.status === 200) {
             
