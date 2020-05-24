@@ -1,5 +1,11 @@
 <template>
   <div class="container container-accordion">
+    <div v-if="isLoad" class="loader-center">
+      <vue-loaders-ball-clip-rotate-multiple
+        color="#ffd369"
+        scale="2"
+      />
+    </div>
     <section class="row">
       <div
         class="accordion  "
@@ -60,6 +66,7 @@ export default {
   },
   data: () => ({
     show: false,
+    isLoad: true,
     smoothies: [],
     liquid: "",
     fruits: [],
@@ -69,19 +76,13 @@ export default {
   created() {
     this.getSmoothies();
   },
-  computed: {
-    totalValue() {
-      console.info("");
-      return "";
-    },
-  },
   methods: {
     getSmoothies() {
       axios
         .get("https://smoothie-api1.herokuapp.com/smoothies/")
         .then((resp) => {
           if (resp.status === 200) {
-            //this.listas = resp.data;
+            
             this.smoothies = resp.data.map((smoothie) => {
               const { liquids, fruits, proteins } = smoothie;
               this.liquid = liquids;
@@ -98,7 +99,7 @@ export default {
               const totalFlavor = totalFruitValue + liquidValue;
               smoothie.show = false;
               smoothie.totalFlavor = totalFlavor;
-
+              this.isLoad = false;
               return smoothie;
             });
           }
@@ -128,6 +129,10 @@ export default {
 </script>
 
 <style lang="scss">
+.loader-center{
+  text-align: center;
+  margin-top: 3em;
+}
 .container .row {
   flex-flow: column;
 
